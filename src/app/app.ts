@@ -13,6 +13,9 @@ export class AppComponent {
   public isSubMenuOpen = signal<boolean>(false);
   public isThemeMenuOpen = signal<boolean>(false);
 
+    // Fallback mocks for navbar parameters
+  public navbarCollapse: any = null;
+
   public toggleMenu(event: Event): void {
     this.isMenuOpen.update(v => !v);
   }
@@ -34,8 +37,8 @@ export class AppComponent {
     this.isThemeMenuOpen.set(false);
   }
 
-  public handleMenuChoice(name: string): void {
-    alert(`Selected: ${name}`);
+  public handleMenuChoice(name: string, type: string, collapseRef: any): void {
+    console.log(`Menu choice selected: ${name} (${type})`);
     this.closeMenu();
     this.closeThemeMenu();
   }

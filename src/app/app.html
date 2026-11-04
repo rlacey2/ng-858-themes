@@ -1,85 +1,96 @@
     <div style="padding: 20px;">
       <h1>Angular Theme Switcher Demo</h1>
       <p>Current Active Style Variable: <strong>{{ themeService.currentTheme() }}</strong></p>
+      <br>
+      nest menu issues see other ng-8??
 
-<!-- Main Positioning Wrapper (Add classes depending on viewport quadrant) -->
-<!-- Top-Right Corner: Add 'drop-start' -->
-<!-- Top-Left Corner:  Add 'drop-end' -->
-<!-- Bottom-Right/Left: Add 'drop-up' or 'drop-start' combined -->
+<!-- 
+  4-CORNER ASSIGNMENT CONFIGURATION GUIDE:
+  - Top-Right corner position: Use "drop-start"
+  - Top-Left corner position:  Use "drop-end"
+  - Bottom-Right / Bottom-Left: Combine with "drop-up" utility class 
+-->
 <div class="dropdown positional-container drop-start" (mouseleave)="closeMenu(); closeThemeMenu()">
   <button (click)="toggleMenu($event)" class="btn btn-secondary btn-sm dropdown-toggle" type="button">
     Options Menu
-  </button> 
-  
-  <!-- Level 1 Dropdown List (Swaps left/right safely) -->
-  <ul class="dropdown-menu dropdown-menu-end shadow" [class.show]="isMenuOpen()">
-   
-          
-<!-- Theme Selection Sub-menu Entry Point -->
-<li class="position-relative" (mouseenter)="toggleThemeMenu(true)" (mouseleave)="toggleThemeMenu(false)">
-  <button class="dropdown-item d-flex justify-content-between align-items-center w-100" type="button">
-    Themes <span>&raquo;</span>
   </button>
   
-  <!-- Level 2 Sub-dropdown (Theme Subchoices) -->
-  <ul class="dropdown-menu shadow sub-menu-layer" [class.show]="isThemeMenuOpen()">
+  <!-- Level 1 Dropdown Menu -->
+  <ul class="dropdown-menu dropdown-menu-end shadow" [class.show]="isMenuOpen()">
+    
+    <!-- Theme Selection Sub-menu Entry Point -->
+    <li class="position-relative" (mouseenter)="toggleThemeMenu(true)" (mouseleave)="toggleThemeMenu(false)">
+      <button class="dropdown-item w-100" type="button">
+        Themes <span>&raquo;</span>
+      </button>
+      
+      <!-- Level 2 Sub-dropdown (Theme Choices with Solid, High-Contrast Offset Settings) -->
+      <ul class="dropdown-menu shadow sub-menu-layer" [class.show]="isThemeMenuOpen()">
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-light')">
+            Light Mode @if(themeService.currentTheme() === 'theme-light') { <span>✓</span> }
+          </button>
+        </li>
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-dark')">
+            Dark Mode @if(themeService.currentTheme() === 'theme-dark') { <span>✓</span> }
+          </button>
+        </li>
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-nature')">
+            Nature Mode @if(themeService.currentTheme() === 'theme-nature') { <span>✓</span> }
+          </button>
+        </li>
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-cyberpunk')">
+            Cyberpunk @if(themeService.currentTheme() === 'theme-cyberpunk') { <span>✓</span> }
+          </button>
+        </li>
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-coffee')">
+            Coffee Cozy @if(themeService.currentTheme() === 'theme-coffee') { <span>✓</span> }
+          </button>
+        </li>
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-ocean')">
+            Deep Ocean @if(themeService.currentTheme() === 'theme-ocean') { <span>✓</span> }
+          </button>
+        </li>
+        <li>
+          <button class="dropdown-item" type="button" (click)="themeService.updateTheme('theme-pastel')">
+            Pastel Dream @if(themeService.currentTheme() === 'theme-pastel') { <span>✓</span> }
+          </button>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Standard Alpha Selection Entry -->
     <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-light')">
-        Light Mode @if(themeService.currentTheme() === 'theme-light') { <span>✓</span> }
+      <button class="dropdown-item" type="button" (click)="handleMenuChoice('Alpha', 'success', navbarCollapse)">
+        Alpha (Success)
       </button>
     </li>
     <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-dark')">
-        Dark Mode @if(themeService.currentTheme() === 'theme-dark') { <span>✓</span> }
+      <button class="dropdown-item" type="button" (click)="handleMenuChoice('Beta', 'warning', navbarCollapse)">
+        Beta (Warning)
       </button>
     </li>
-    <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-nature')">
-        Nature Mode @if(themeService.currentTheme() === 'theme-nature') { <span>✓</span> }
+    
+    <!-- Gamma Sub-menu Entry Point -->
+    <li class="position-relative" (mouseenter)="toggleSubMenu(true)" (mouseleave)="toggleSubMenu(false)">
+      <button class="dropdown-item w-100" type="button">
+        Gamma <span>&raquo;</span>
       </button>
-    </li>
-    <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-cyberpunk')">
-        Cyberpunk @if(themeService.currentTheme() === 'theme-cyberpunk') { <span>✓</span> }
-      </button>
-    </li>
-    <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-coffee')">
-        Coffee Cozy @if(themeService.currentTheme() === 'theme-coffee') { <span>✓</span> }
-      </button>
-    </li>
-    <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-ocean')">
-        Deep Ocean @if(themeService.currentTheme() === 'theme-ocean') { <span>✓</span> }
-      </button>
-    </li>
-    <li>
-      <button class="dropdown-item d-flex justify-content-between align-items-center" type="button" (click)="themeService.updateTheme('theme-pastel')">
-        Pastel Dream @if(themeService.currentTheme() === 'theme-pastel') { <span>✓</span> }
-      </button>
+      
+      <!-- Level 2 Sub-dropdown (Gamma's 4 Children using the matching offset layer configuration) -->
+      <ul class="dropdown-menu shadow sub-menu-layer" [class.show]="isSubMenuOpen()">
+        <li><button class="dropdown-item" type="button" (click)="handleMenuChoice('Child 1', 'danger', navbarCollapse)">Child 1 (Danger)</button></li>
+        <li><button class="dropdown-item" type="button" (click)="handleMenuChoice('Child 2', 'info', navbarCollapse)">Child 2 (Info)</button></li>
+        <li><button class="dropdown-item" type="button" (click)="handleMenuChoice('Child 3', 'success', navbarCollapse)">Child 3 (Success)</button></li>
+        <li><button class="dropdown-item" type="button" (click)="handleMenuChoice('Child 4', 'warning', navbarCollapse)">Child 4 (Warning)</button></li>
+      </ul>
     </li>
   </ul>
-</li>
+</div>
 
-          <li>
-            <button class="dropdown-item" type="button" (click)="handleMenuChoice('Alpha')">Alpha</button>
-          </li>
-          <li>
-            <button class="dropdown-item" type="button" (click)="handleMenuChoice('Beta')">Beta</button>
-          </li>
-          
-          <!-- Gamma Sub-menu Entry Point -->
-          <li class="position-relative" (mouseenter)="toggleSubMenu(true)" (mouseleave)="toggleSubMenu(false)">
-            <button class="dropdown-item" type="button">
-              Gamma <span>&raquo;</span>
-            </button>
-            
-            <!-- Level 2 Sub-dropdown -->
-            <ul class="dropdown-menu shadow position-absolute zztranslate-middle-x" [class.show]="isSubMenuOpen()" style="margin-left: -5px;">
-              <li><button class="dropdown-item" type="button" (click)="handleMenuChoice('Child 1')">Child 1</button></li>
-              <li><button class="dropdown-item" type="button" (click)="handleMenuChoice('Child 2')">Child 2</button></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
     </div>
