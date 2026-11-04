@@ -1,0 +1,58 @@
+/* src/styles/themes.scss */
+ 
+ 
+
+/* Change your base class identifier to target the prefix */
+.theme-light {
+  --bg-color: #ffffff;
+  --text-color: #212529; /* Dark grey text for light theme */
+  --card-bg: #ffffff;    /* Solid white for menus */
+  --border-color: #dee2e6;
+}
+
+.theme-dark {
+  --bg-color: #121212;
+  --text-color: #ffffff; /* Crisp white text for dark theme */
+  --card-bg: #212529;    /* Solid dark grey/black for menus */
+  --border-color: #444444;
+}
+
+.theme-nature {
+  --bg-color: #f1f8e9;
+  --text-color: #1b5e20; /* Deep forest green text */
+  --card-bg: #ffffff;    /* Solid white menu container */
+  --border-color: #c5e1a5;
+}
+
+
+/* 🌌 THEME: CYBERPUNK / NEON NIGHTS */
+.theme-cyberpunk {
+  --bg-color: #0b0e14;
+  --text-color: #00ffcc;     /* High-contrast neon cyan text */
+  --card-bg: #141923;       /* Deep obsidian core container */
+  --border-color: #ff007f;   /* Hot pink accent lines */
+}
+
+/* ☕ THEME: COFFEE SHOP / SEPIA COZY */
+.theme-coffee {
+  --bg-color: #2b2625;
+  --text-color: #f7f1e3;     /* Warm cream text */
+  --card-bg: #3d3534;       /* Roasted bean brown */
+  --border-color: #d1b894;   /* Soft latte tan layout borders */
+}
+
+/* 🌊 THEME: DEEP OCEAN / MARITIME BLUE */
+.theme-ocean {
+  --bg-color: #0d1b2a;
+  --text-color: #e0e1dd;     /* Clean off-white text */
+  --card-bg: #1b263b;       /* Navy hull blue */
+  --border-color: #415a77;   /* Slate blue separation lines */
+}
+
+/* 🦄 THEME: PASTEL DREAM / RETRO SYNTH */
+.theme-pastel {
+  --bg-color: #fce4ec;
+  --text-color: #4a148c;     /* Deep royal purple high-contrast text */
+  --card-bg: #ffffff;       /* Pure white panels */
+  --border-color: #f8bbd0;   /* Cotton candy pink accents */
+}

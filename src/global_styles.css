@@ -1,0 +1,86 @@
+/* src/styles.scss */
+@import 'styles/themes.scss';
+
+ 
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  min-height: 100vh;
+}
+
+/* Force container frames to adapt, ensuring solid colors */
+.dropdown-menu, .card, .content-box, main {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* ⚡ FIX TRANSPARENCY & HOVER STATES FOR DROPDOWNS ⚡ */
+.dropdown-menu {
+  /* Ensures dropdown items are completely opaque and readable */
+  background-color: var(--card-bg) !important; 
+}
+
+.dropdown-item {
+  color: var(--text-color) !important;
+}
+
+/* Ensure hover choices remain visible in dark/nature themes */
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+
+/* --- BASE ACCORDION / ANCHOR CONFIG --- */
+.dropdown-menu li.position-relative {
+  position: relative !important;
+}
+
+.dropdown-menu .sub-menu-layer {
+  display: none;
+  position: absolute !important;
+  top: 0 !important;
+  transform: none !important;
+}
+
+.dropdown-menu .sub-menu-layer.show {
+  display: block !important;
+}
+
+/* ==========================================================================
+   4-CORNER BOUNDARY DEFENSE 
+   ========================================================================== */
+
+/* ↗️ CORNER 1: TOP-RIGHT (Menu opens left, Submenu opens further LEFT) */
+.drop-start .sub-menu-layer {
+  left: auto !important;
+  right: 100% !important; /* Pushes inward safely to the left */
+  margin-right: 4px !important;
+  margin-left: 0 !important;
+}
+
+/* ↖️ CORNER 2: TOP-LEFT (Menu opens right, Submenu opens further RIGHT) */
+.drop-end .sub-menu-layer {
+  right: auto !important;
+  left: 100% !important; /* Pushes inward safely to the right */
+  margin-left: 4px !important;
+  margin-right: 0 !important;
+  
+  /* Flip the arrow direction visually for right-side menus */
+  & ~ button .submenu-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+/* ↘️ CORNER 3 & ↙️ CORNER 4: BOTTOM CORNERS (Prevents vertical page cutoff) */
+.drop-up .dropdown-menu {
+  top: auto !important;
+  bottom: 100% !important; /* Forces the main menu up */
+  margin-bottom: 4px !important;
+}
+
+.drop-up .sub-menu-layer {
+  top: auto !important;
+  bottom: 0 !important; /* Aligns submenu with the bottom of the hover item */
+}

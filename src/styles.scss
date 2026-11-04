@@ -1,0 +1,123 @@
+/* src/styles.scss */
+@import './styles/themes.scss';
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Base structural layout for the demo menu */
+.positional-container {
+  position: relative;
+  display: inline-block;
+}
+
+.btn {
+  padding: 8px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--dropdown-bg);
+  color: var(--dropdown-text);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 8px 0;
+  list-style: none;
+  margin: 4px 0 0 0;
+  min-width: 160px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.position-relative {
+  position: relative;
+}
+
+.translate-middle-x {
+  left: 100%;
+  top: 0;
+}
+
+
+/* src/app/components/navbar-dropdown.component.scss (or inside styles.scss) */
+
+/* Position the main container relatively */
+.positional-container {
+  position: relative;
+}
+
+/* ⚡ FIX LEVEL 2 SUB-DROPDOWNS FLYING OFF SCREEN ⚡ */
+li.position-relative {
+  position: relative;
+}
+
+/* Target Level 2 dropdown menus specifically */
+li.position-relative > .dropdown-menu {
+  top: 0 !important;
+  /* Flip direction: opens out to the LEFT instead of right to prevent screen overflow */
+  left: auto !important;
+  right: 100% !important; 
+  margin-right: 5px !important; /* Space between level 1 and level 2 menus */
+  margin-left: 0 !important;
+}
+
+
+/* 1. Ensure the parent list item serves as the absolute structural anchor */
+.dropdown-menu li.position-relative {
+  position: relative !important;
+}
+
+/* 2. Target your nested Level 2 sub-menus specifically */
+.dropdown-menu .sub-menu-layer {
+  display: none; /* Hide by default */
+  position: absolute !important;
+  top: 0 !important;
+  
+  /* Force the sub-menu to anchor on the left side of the main menu */
+  left: auto !important;
+  right: 100% !important; 
+  
+  /* Add a clean visual gap away from the main dropdown block */
+  margin-right: 6px !important;
+  margin-left: 0 !important;
+  transform: none !important; /* Disables any remaining translate-middle-x bugs */
+}
+
+/* 3. Let Angular's toggle class control the display state flawlessly */
+.dropdown-menu .sub-menu-layer.show {
+  display: block !important;
+}
