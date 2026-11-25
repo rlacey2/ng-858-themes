@@ -12,7 +12,7 @@ export type ThemeType =
   | 'theme-pastel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class ThemeService {
   private document = inject(DOCUMENT);

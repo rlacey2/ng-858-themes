@@ -6,6 +6,15 @@
     "start": "ng serve",
     "build": "ng build"
   },
+  "overrides": {
+    "@angular/core": "$@angular/core",
+    "@angular/animations": "$@angular/animations",
+    "rxjs": "$rxjs",
+    "tslib": "$tslib",
+    "@angular/compiler-cli": {
+      "typescript": "~6.0.3"
+    }
+  },
   "dependencies": {
     "@angular/animations": "^22.0.0",
     "@angular/common": "^22.0.0",
@@ -15,7 +24,7 @@
     "@angular/platform-browser": "^22.0.0",
     "@angular/platform-browser-dynamic": "^22.0.0",
     "@angular/router": "^22.0.0",
-       "bootstrap": "^5.3.8",
+    "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -24,8 +33,6 @@
     "@angular/build": "^22.2.5",
     "@angular/cli": "^22.2.5",
     "@angular/compiler-cli": "^22.2.4",
-    
- 
-   "typescript": "^6.0.3"
+    "typescript": "^6.0.3"
   }
 }
